@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+
+#define G 9.81
+
+void projectile_motion(double init_velocity, double angle, double *time_of_flight, double *max_height, double *range) {
+ 
+    double angle_rad = angle * (M_PI / 180.0);
+    
+ 
+    *time_of_flight = (2 * init_velocity * sin(angle_rad)) / G;
+    
+    
+    *max_height = (init_velocity * init_velocity * sin(angle_rad) * sin(angle_rad)) / (2 * G);
+    
+
+    *range = (init_velocity * init_velocity * sin(2 * angle_rad)) / G;
+}
+
+int main() {
+    double init_velocity = 50.0;
+    double angle = 45.0;   
+    double time_of_flight, max_height, range;
+    
+    projectile_motion(init_velocity, angle, &time_of_flight, &max_height, &range);
+    
+    printf("Time of Flight: %.2f s\n", time_of_flight);
+    printf("Maximum Height: %.2f m\n", max_height);
+    printf("Range: %.2f m\n", range);
+    
+    return 0;
+}
