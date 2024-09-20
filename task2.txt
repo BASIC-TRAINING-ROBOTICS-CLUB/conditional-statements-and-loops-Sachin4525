@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+#define GRAVITY 9.81 
+
+double calculateTimeOfFlight(double velocity, double angle) {
+    return (2 * velocity * sin(angle * M_PI / 180)) / GRAVITY;
+}
+
+double calculateMaxHeight(double velocity, double angle) {
+    return (pow(velocity * sin(angle * M_PI / 180), 2)) / (2 * GRAVITY);
+}
+
+double calculateRange(double velocity, double angle) {
+    return (pow(velocity, 2) * sin(2 * angle * M_PI / 180)) / GRAVITY;
+}
+
+int main() {
+    double velocity, angle;
+
+    // Input velocity and angle from the user
+    cout << "Enter the initial velocity of the projectile (m/s): ";
+    cin >> velocity;
+    cout << "Enter the angle of projection (degrees): ";
+    cin >> angle;
+
+    double timeOfFlight = calculateTimeOfFlight(velocity, angle);
+    double maxHeight = calculateMaxHeight(velocity, angle);
+    double range = calculateRange(velocity, angle);
+
+    cout << "\nProjectile Motion Results:\n";
+    cout << "Time of Flight: " << timeOfFlight << " seconds\n";
+    cout << "Maximum Height: " << maxHeight << " meters\n";
+    cout << "Range: " << range << " meters\n";
+
+    return 0;
+}
